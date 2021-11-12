@@ -15,7 +15,6 @@
     <header>
         <nav class="navbar navbar-light bg-light border-bottom border-info">
             <span class="navbar-brand mg-0 h1" style="font-weight: bold;">CodeBlog</span>
-            <a class="btn btn-primary" href="/newpost" role="button">Novo Post</a>
         </nav>
     </header>
 
@@ -24,24 +23,39 @@
 
         <nav aria-label="Page breadcrumb">
             <ol class="breadcrumb bg-transparent">
-                <li class="breadcrumb-item active" aria-current="page">Posts</li>
+                <li class="breadcrumb-item active" aria-current="page"><a href="/posts">Posts</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Novo Post</li>
             </ol>
         </nav>
 
-        <div class="row d-flex justify-content-center">
-            <div class="col-12 col-sm-9 col-md-7 col-lg-7">
-                <div class="card pb-2 mt-2 mb-4 shadow rounded" th:each="post : ${posts}">
-                        <small class="text-muted ml-3 mt-2" th:text="${post.autor}"><span th:text="${.data}"></span></small>
+        <div class="d-flex justify-content-center">
+            <div class="card col-10 col-sm-9 col-md-8 col-lg-8">
+                <form method="post">
+                    <h3 class="card-title text-center mt-3">Escreva o seu Novo Post</h3>
                     <div class="card-body">
-                        <a class="decoration-none font-weight-bolder" th:href="${(#mvc.url('CC#getPostDetails').arg(0, post.id)).build()}">
-                            <h4 class="card-tittle"><span th:text="${post.titulo}"></span></h3>
-                        </a>
-                        
-                        <p class="card-text"><span th:utext="${#strings.abbreviate(post.texto,400)} "></span></p>
+                        <div class="mb-4 form-group">
+                            <input type="text" class="form-control" name="titulo" placeholder="Titulo *">
+                        </div>
+
+                        <div class="mb-4 form-group">
+                            <input type="text" class="form-control" name="autor" placeholder="Autor *">
+                        </div>
+
+                        <div class="mb-4 form-group">
+                            <textarea type="text" class="form-control" name="texto"
+                                placeholder="Texto *"></textarea>
+                        </div>
+                        <small class="form-text text-muted" style="margin-top: -15px;">(*) Campos obrigatórios</small>
+
+                        <div class=" form-group mt-3 text-center">
+                            <button type="submit" class="btn btn-primary mr-5 ml-1">Publicar</button>
+                            <a href="/posts" class="btn-link text-dark" role="button">Cancelar</a>
+                        </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
+
     </main>
 
 
