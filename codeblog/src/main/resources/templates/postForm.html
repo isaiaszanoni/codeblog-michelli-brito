@@ -8,6 +8,12 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <title>CodeBlog - Spring Boot</title>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.js"></script>
 </head>
 
 <body>
@@ -30,6 +36,7 @@
 
         <div class="d-flex justify-content-center">
             <div class="card col-10 col-sm-9 col-md-8 col-lg-8">
+                <th:block th:include="mensagemValidacao"></th:block>
                 <form method="post">
                     <h3 class="card-title text-center mt-3">Escreva o seu Novo Post</h3>
                     <div class="card-body">
@@ -42,13 +49,12 @@
                         </div>
 
                         <div class="mb-4 form-group">
-                            <textarea type="text" class="form-control" name="texto"
-                                placeholder="Texto *"></textarea>
+                            <textarea type="text"  id="summernote" class="form-control" name="texto" placeholder="Texto *"></textarea>
                         </div>
                         <small class="form-text text-muted" style="margin-top: -15px;">(*) Campos obrigatórios</small>
 
                         <div class=" form-group mt-3 text-center">
-                            <button type="submit" class="btn btn-primary mr-5 ml-1">Publicar</button>
+                            <button type="submit" id="publicar" class="btn btn-primary mr-5 ml-1">Publicar</button>
                             <a href="/posts" class="btn-link text-dark" role="button">Cancelar</a>
                         </div>
                     </div>
@@ -58,16 +64,13 @@
 
     </main>
 
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
-        integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
-        crossorigin="anonymous"></script>
+    <script>
+        $('#summernote').summernote({
+            placeholder: 'Texto *',
+            tabsize: 2,
+            height: 300
+        });
+    </script>
 </body>
 
 </html>
